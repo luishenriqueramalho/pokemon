@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
+import { Link, Route, Routes } from "react-router-dom";
+import PokemonDetails from "./PokemonDetails";
 
 interface Pokemon {
   name: string;
@@ -98,15 +100,21 @@ const App = () => {
       <div className="pokemon-grid">
         {filteredPokemons.length > 0 ? (
           filteredPokemons.map((pokemon) => (
-            <div className="pokemon-card" key={pokemon.name}>
-              <img src={getPokemonImageUrl(pokemon.url)} alt={pokemon.name} />
-              <h3>{pokemon.name}</h3>
-            </div>
+            <Link to={`/pokemon/${pokemon.name}`} key={pokemon.name}>
+              <div className="pokemon-card">
+                <img src={getPokemonImageUrl(pokemon.url)} alt={pokemon.name} />
+                <h3>{pokemon.name}</h3>
+              </div>
+            </Link>
           ))
         ) : (
           <p>Carregando Pokémons...</p>
         )}
       </div>
+      <Routes>
+        <Route path="/" element={"Teste"} />
+        <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
+      </Routes>
     </div>
   );
 };
