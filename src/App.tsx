@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
-import { Link, Route, Routes } from "react-router-dom";
-import PokemonDetails from "./PokemonDetails";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Pokemon {
   name: string;
@@ -11,6 +10,7 @@ interface Pokemon {
 }
 
 const App = () => {
+  const navigate = useNavigate();
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [searchField, setSearchField] = useState("");
   const [filteredPokemons, setFilteredPokemons] = useState<Pokemon[]>([]);
@@ -80,6 +80,10 @@ const App = () => {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
   };
 
+  const goToAboutPage = () => {
+    navigate("/PokemonDetails"); // Use a rota desejada aqui
+  };
+
   return (
     <div className="App">
       <h1>Listagem de Pokemons</h1>
@@ -96,7 +100,6 @@ const App = () => {
           </option>
         ))}
       </select>
-
       <div className="pokemon-grid">
         {filteredPokemons.length > 0 ? (
           filteredPokemons.map((pokemon) => (
@@ -110,11 +113,7 @@ const App = () => {
         ) : (
           <p>Carregando Pokémons...</p>
         )}
-      </div>
-      <Routes>
-        <Route path="/" element={"Teste"} />
-        <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
-      </Routes>
+      </div>{" "}
     </div>
   );
 };

@@ -52,3 +52,71 @@
     transform: rotate(360deg);
   }
 }
+
+/* tables and cards */
+
+.pokemon-info-card {
+  background-color: #00aaff;
+  border-radius: 10px;
+  color: white;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.info-item h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.info-item p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.stats-container {
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px; /* Ajuste a largura conforme necessário */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  margin-top: 30px;
+}
+
+.stat-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  width: 30%; /* Ajuste a largura do rótulo conforme necessário */
+  padding-right: 10px; /* Espaço entre rótulo e barra */
+}
+
+.stat-bar {
+  background-color: #ddd;
+  flex-grow: 1; /* Faz a barra ocupar o espaço restante */
+  border-radius: 5px;
+  overflow: hidden; /* Permite que o border-radius seja aplicado ao stat-fill */
+}
+
+.stat-fill {
+  background-color: #00f;
+  height: 20px; /* Ajuste a altura da barra conforme necessário */
+  width: 0; /* Inicialmente sem preenchimento, ajuste com estilo inline */
+}
+
+.option-mark {
+  width: 100px;
+  padding: 10px;
+  background-color: #00aaff;
+  border-radius: 8px;
+}
