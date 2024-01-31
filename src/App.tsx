@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  Container,
+  PokemonCard,
+  PokemonGrid,
+  PokemonNameInitial,
+  Search,
+  SelectType,
+  Title,
+} from "./global";
 
 interface Pokemon {
   name: string;
@@ -85,36 +93,42 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Listagem de Pokemons</h1>
-      <input
+    <Container>
+      <Title>LISTAGEM DE POKEMONS</Title>
+      <Search
         type="search"
-        placeholder="Buscar Pokémon"
+        placeholder="BUSCAR POKEMÓN"
         onChange={(e) => setSearchField(e.target.value)}
       />
-      <select onChange={(e) => setTypeFilter(e.target.value)}>
-        <option value="">Todos os tipos</option>
+      <SelectType onChange={(e) => setTypeFilter(e.target.value)}>
+        <option value="">TODOS OS TIPOS</option>
         {pokemonTypes.map((type) => (
           <option key={type} value={type}>
-            {type}
+            {type.toUpperCase()}
           </option>
         ))}
-      </select>
-      <div className="pokemon-grid">
+      </SelectType>
+      <PokemonGrid>
         {filteredPokemons.length > 0 ? (
           filteredPokemons.map((pokemon) => (
-            <Link to={`/pokemon/${pokemon.name}`} key={pokemon.name}>
-              <div className="pokemon-card">
+            <Link
+              style={{ textDecoration: "none" }}
+              to={`/pokemon/${pokemon.name}`}
+              key={pokemon.name}
+            >
+              <PokemonCard className="pokemon-card">
                 <img src={getPokemonImageUrl(pokemon.url)} alt={pokemon.name} />
-                <h3>{pokemon.name}</h3>
-              </div>
+                <PokemonNameInitial>
+                  {pokemon.name.toUpperCase()}
+                </PokemonNameInitial>
+              </PokemonCard>
             </Link>
           ))
         ) : (
           <p>Carregando Pokémons...</p>
         )}
-      </div>{" "}
-    </div>
+      </PokemonGrid>{" "}
+    </Container>
   );
 };
 
